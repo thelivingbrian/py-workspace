@@ -10,7 +10,7 @@ class Solution:
     cache = {}
     
     def generateParenthesis(self, n: int) -> List[str]:
-        return ["(" + item for item in self.combine(n-1, 1)]
+        return self.combine(n, 0)
 
     def combine(self, rem: int, stack: int) -> List[str]:
         memo = self.cache.get((rem,stack))
