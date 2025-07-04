@@ -51,7 +51,7 @@ class Solution2:
 
 import sys
 
-def main(n=3):
+def run(n=3):
     sol = Solution()
     results = sol.generateParenthesis(n)
     print(f"Generated {len(results)} combinations of parentheses for n={n}:")
@@ -59,4 +59,4 @@ def main(n=3):
         print(p)
 
 if __name__ == "__main__":
-    main()
+    run()
