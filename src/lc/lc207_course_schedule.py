@@ -121,3 +121,32 @@ class Solution:
             if color[course] == WHITE and not dfs(course):
                 return False
         return True
+
+# LRU Cache version
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # Build adjacency list:  A → B  means “to take A you must first take B”
+        graph = defaultdict(list)
+        for course, prereq in prerequisites:
+            graph[course].append(prereq)
+
+        visiting = set()                 # current recursion stack (GRAY nodes)
+
+        @lru_cache(maxsize=None)         # LRU cache ⇢ acts like the BLACK set
+        def dfs(course: int) -> bool:
+            if course in visiting:       # back-edge ⇒ cycle
+                return False
+
+            visiting.add(course)
+            for prereq in graph[course]:
+                if not dfs(prereq):
+                    return False
+            visiting.remove(course)
+
+            return True                  # result is memoised by lru_cache
+
+        # Launch DFS from every course that hasn’t been cached yet
+        for c in range(numCourses):
+            if not dfs(c):
+                return False
+        return True
