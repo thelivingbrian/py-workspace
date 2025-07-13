@@ -33,7 +33,7 @@ class Solution:
                 current = 1 
         return longest
 
-# Wonky - Time Complexity unclear, chatGPT says O(n^2) worst case 
+# Wonky - Time Complexity unclear, chatGPT claims O(n Log n) worst case 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         if len(nums) == 0: return 0 
