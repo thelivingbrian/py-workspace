@@ -48,6 +48,28 @@ class Solution:
                 r -= 1
         return water 
 
+# Weird edge case tolerance 
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        water = 0
+        l, r = 0, len(height)-1
+        left_wall, right_wall = 0, 0
+        while l <= r:
+            if left_wall < right_wall:      # requires while l <= r or misses middle element
+            # if height[l] < height[r]:     # while l < or <= r works here (why? b.c. last cell cannot trap water)
+                if height[l] >= left_wall:
+                    left_wall = height[l]
+                else:
+                    water += left_wall - height[l]
+                l += 1
+            else: 
+                if height[r] >= right_wall:
+                    right_wall = height[r]
+                else:
+                    water += right_wall - height[r]
+                r -= 1
+        return water 
+
 # chatGPT Stack solution - very confusing at first 
 class Solution:
     def trap(self, height: List[int]) -> int:
