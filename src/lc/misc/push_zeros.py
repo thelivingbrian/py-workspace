@@ -2,7 +2,7 @@
 
 # Original 
 class Solution:
-	def pushZerosToEnd(self, arr):
+    def pushZerosToEnd(self, arr):
         read, write, trailing_zeros = 0, 0, 0
         while read < len(arr):
             if arr[read] != 0:
@@ -19,7 +19,7 @@ class Solution:
 
 # same logic - no redundant variables 
 class Solution:
-	def pushZerosToEnd(self, arr):
+    def pushZerosToEnd(self, arr):
         write = 0
         for read in range(len(arr)):
             if arr[read] != 0:
