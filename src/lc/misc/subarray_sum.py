@@ -8,7 +8,7 @@ class Solution:
         i, j = 0, 1
         total = arr[0]
         while i < len(arr):
-            if total == target: 
+            if total == target:
                 return [i+1,j]
             if total < target and j < len(arr): 
                 total += arr[j]
@@ -60,4 +60,39 @@ class Solution:
             if cumulative_sum not in sum_map:
                 sum_map[cumulative_sum] = i
                 
+        return [-1]
+    
+# Handles zeros with window and no guard clause
+class Solution:
+    def subarraySum(self, arr, target):
+        i, j = 0, 1
+        total = arr[0]
+        while i < len(arr):
+            if total == target:
+                if i == j: 
+                    total += arr[j]
+                    j += 1
+                    continue
+                else: return [i+1,j]
+            if total < target and j < len(arr): 
+                total += arr[j]
+                j = j+1
+            else: 
+                total -= arr[i]
+                i += 1
+        return [-1]
+    
+# Same as above - less nesting:
+class Solution:
+    def subarraySum(self, arr, target):
+        i, j, total = 0, 1, arr[0]
+        while i < len(arr):
+            if total == target and i != j:
+                return [i+1,j]
+            elif total <= target and j < len(arr): 
+                total += arr[j]
+                j += 1
+            else: 
+                total -= arr[i]
+                i += 1
         return [-1]

@@ -17,7 +17,7 @@ class Solution:
         
         return grid[-1][-1]
             
-# First solution (slow)
+# First solution (passes; slow)
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         best_so_far = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
