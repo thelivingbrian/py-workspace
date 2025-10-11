@@ -1,40 +1,36 @@
 # Leetcode 3186. Maximum Total Spell Damage
 # https://leetcode.com/problems/maximum-total-spell-damage/
 
-# Incorrect - too slow w/o pruning current in dfs, otherwise wrong
- class Solution:
+# DP solution - Accepted 
+class Solution:
     def maximumTotalDamage(self, power: List[int]) -> int:
-        total_for_damage = {}
-        for spell in power: 
-            if spell in total_for_damage:
-                total_for_damage[spell] += spell
-            else:
-                total_for_damage[spell] = spell 
+        counted = Counter(power)
+        sorted_unique = sorted(counted)
+        totals = [ val * counted[val] for val in sorted_unique]
 
-        def dfs(rem: Dict[int, int]) -> int: 
-            if not rem: 
-                return 0
-            else: 
-                highest = 0
-                for damage, total in list(rem.items()): 
-                    minus_two = rem.pop(damage-2, -1)
-                    minus_one = rem.pop(damage-1, -1)
-                    current = rem.pop(damage) # Could have been removed perminently via iteration in a previous depth search 
-                    plus_one = rem.pop(damage+1, -1)
-                    plus_two = rem.pop(damage+2, -1)
-                    continuation = dfs(rem)
-                    highest = max(highest, continuation + total)
-                    if minus_two > 0: rem[damage-2] = minus_two
-                    if minus_one > 0: rem[damage-1] = minus_one
-                    #if current: rem[damage] = current
-                    if plus_one > 0: rem[damage+1] = plus_one
-                    if plus_two > 0: rem[damage+2] = plus_two
-                return highest
-        
-        return dfs(total_for_damage)                   
+        next_index = [0] * len(sorted_unique)
+        for index, val in enumerate(sorted_unique):
+            next_index[index] = bisect.bisect_right(sorted_unique, val+2)  
+
+        # 30,  30,  20,  20,  18,  0
+        dp = [0] * (len(sorted_unique) + 1)
+        # 1,  3,  4,  5,  6
+        # 4, 12, 16, 20, 18
+        for i in range(len(sorted_unique)-1, -1, -1):
+            keep = totals[i] + dp[next_index[i]] # 30
+            skip = dp[i+1]                       # 20
+            dp[i] = max(keep, skip)
+
+        return dp[0]
+
+# See Also: 
+    # https://leetcode.com/problems/house-robber/
+    # https://leetcode.com/problems/delete-and-earn/
+
+
+# Invalid TLE solutions:                   
                     
-                    
-# Fixes above problems - TLE
+# TLE w/ Dictionary DFS
 class Solution:
     def maximumTotalDamage(self, power: List[int]) -> int:
         total_for_damage = {}
@@ -51,7 +47,7 @@ class Solution:
                 highest = 0
                 for damage, total in list(rem.items()): 
                     rem.pop(damage)
-                    new_rem = dict(rem)
+                    new_rem = dict(rem) # Must create copy since iteration is removing elements
                     for d in (damage-2, damage-1, damage+1, damage+2):
                         new_rem.pop(d, None)
                     continuation = dfs(new_rem)
@@ -60,9 +56,6 @@ class Solution:
         
         return dfs(total_for_damage)
 
-# See Also: 
-    # https://leetcode.com/problems/house-robber/
-    # https://leetcode.com/problems/delete-and-earn/
 
 # Memoized with lru-cache but still TLE
 class Solution:
@@ -94,24 +87,3 @@ class Solution:
 
         return max_from_index(0)
 
-# DP solution - Accepted 
-class Solution:
-    def maximumTotalDamage(self, power: List[int]) -> int:
-        counted = Counter(power)
-        sorted_unique = sorted(counted)
-        totals = [ val * counted[val] for val in sorted_unique]
-
-        next_index = [0] * len(sorted_unique)
-        for index, val in enumerate(sorted_unique):
-            next_index[index] = bisect.bisect_right(sorted_unique, val+2)  
-
-        # 30,  30,  20,  20,  18,  0
-        dp = [0] * (len(sorted_unique) + 1)
-        # 1,  3,  4,  5,  6
-        # 4, 12, 16, 20, 18
-        for i in range(len(sorted_unique)-1, -1, -1):
-            keep = totals[i] + dp[next_index[i]] # 30
-            skip = dp[i+1]                       # 20
-            dp[i] = max(keep, skip)
-
-        return dp[0]
