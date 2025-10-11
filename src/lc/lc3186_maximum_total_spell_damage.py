@@ -87,3 +87,67 @@ class Solution:
 
         return max_from_index(0)
 
+
+# ChatGPT Solutions (accepted)
+class Solution:
+    def maximumTotalDamage(self, power: list[int]) -> int:
+        # 1) compress
+        cnt = Counter(power)
+        sum_at = {d: d * c for d, c in cnt.items()}
+
+        # 2) sort unique damages
+        keys = sorted(sum_at.keys())
+        m = len(keys)
+        if m == 0:
+            return 0
+
+        # 3) precompute prev index for each i using binary search
+        prev = []
+        for i, d in enumerate(keys):
+            j = bisect.bisect_right(keys, d - 3) - 1  # last index <= d-3
+            prev.append(j)
+
+        # 4) DP
+        dp = [0] * m
+        for i in range(m):
+            take = sum_at[keys[i]] + (dp[prev[i]] if prev[i] >= 0 else 0)
+            skip = dp[i - 1] if i > 0 else 0
+            dp[i] = max(skip, take)
+
+        return dp[-1]
+
+class Solution:
+    def maximumTotalDamage(self, power: List[int]) -> int:
+        if not power:
+            return 0
+
+        # 1) Combine duplicates: total contribution if we choose damage d is d * count(d)
+        count_by_damage = Counter(power)
+        damage_values = sorted(count_by_damage.keys())
+        total_at_damage = [d * count_by_damage[d] for d in damage_values]
+
+        # 2) For each position i, find the last index j with damage_values[j] <= damage_values[i] - 3
+        prev_compatible_index: List[int] = []
+        for i, d in enumerate(damage_values):
+            j = bisect.bisect_right(damage_values, d - 3) - 1
+            prev_compatible_index.append(j)
+
+        # 3) Memoized recursion over index in damage_values
+        @lru_cache(maxsize=None)
+        def best_total_up_to(index: int) -> int:
+            """
+            Returns the maximum total damage considering damage_values[0..index].
+            """
+            if index < 0:
+                return 0
+
+            # Option A: skip current damage bucket
+            skip_current = best_total_up_to(index - 1)
+
+            # Option B: take current damage bucket and jump to its last compatible predecessor
+            take_current = total_at_damage[index] + best_total_up_to(prev_compatible_index[index])
+
+            return max(skip_current, take_current)
+
+        return best_total_up_to(len(damage_values) - 1)
+
