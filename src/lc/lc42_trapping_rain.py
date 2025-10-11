@@ -70,7 +70,7 @@ class Solution:
                 r -= 1
         return water 
 
-# chatGPT Stack solution - very confusing at first 
+# chatGPT Monotonic Stack solution - very confusing at first 
 class Solution:
     def trap(self, height: List[int]) -> int:
         stack = []  # indices, heights increasing
