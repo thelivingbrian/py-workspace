@@ -25,6 +25,43 @@ class Solution:
 
 # See Also: 
     # https://leetcode.com/problems/house-robber/
+        # Backward
+        class Solution:
+            def rob(self, nums: List[int]) -> int:
+                dp = [0] * (len(nums)+2)
+                
+                # 12, 10, 10, 3, 1, 0, 0
+                # 2, 7, 9, 3, 1
+                for i in range(len(nums)-1, -1, -1):
+                    skip = dp[i+1]
+                    keep = nums[i] + dp[i+2]
+                    dp[i] = max(skip, keep)
+
+                return dp[0]
+        # Forward
+        class Solution:
+            def rob(self, nums: List[int]) -> int:
+                size = len(nums)
+                if size <= 2: return max(nums)
+
+                dp = [0] * size
+                dp[0], dp[1] = nums[0], max([nums[1], nums[0]])
+                
+                # 2, 2, 3, 4
+                # 2, 1, 1, 2
+                for i in range(2, size):
+                    skip = dp[i-1]
+                    keep = nums[i] + dp[i-2]
+                    dp[i] = max(skip, keep)
+
+                return dp[-1]
+        # O(1) space
+        class Solution:
+            def rob(self, nums: List[int]) -> int:
+                prev2 = prev1 = 0
+                for num in nums:
+                    prev2, prev1 = prev1, max(prev1, num + prev2)
+                return prev1
     # https://leetcode.com/problems/delete-and-earn/
 
 
