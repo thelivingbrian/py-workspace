@@ -9,6 +9,7 @@
 
 ## Links / Resources 
     - https://www.geeksforgeeks.org/dsa/facebookmeta-sde-sheet-interview-questions-and-answers/
+    - https://www.typingtest.com/
 
 ## Topic by Week
     - 10/14 - 10/20 : Dynamic Programming
@@ -27,3 +28,4 @@
 ## Review Problem of the Day 
     -[x] LC 11
     -[x] LC 97 (dp)
+    -[x] LC 55 
