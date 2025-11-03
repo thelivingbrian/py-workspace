@@ -1,6 +1,7 @@
 # Leetcode 322. Coin Change
 # https://leetcode.com/problems/coin-change/
 
+# DFS 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         coins.sort(reverse=True)
@@ -18,7 +19,28 @@ class Solution:
         check = dfs(0, amount)
         return -1 if check == math.inf else check
 
-# TLE class Solution:
+# BFS - Faster. More natural? Arguably best solution. 
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # Nodes are amounts, Edge weights are coins
+        if amount == 0: return 0
+        queue = deque([[0,0]])
+        seen = set([0])
+        while queue:
+            total, coin_count = queue.popleft()
+            for coin in coins:
+                new_total = total + coin
+                if new_total == amount:
+                    return coin_count + 1 # First occurance must take fewest number of steps 
+                elif new_total < amount and new_total not in seen:
+                    seen.add(new_total)
+                    queue.append([new_total, coin_count+1])
+        return -1
+
+###
+# Attempt reference -
+
+# TLE
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         # 22 | 26 | 36 -> [10, 7, 4]

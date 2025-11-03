@@ -1,7 +1,8 @@
 ## Coding Challenges for LC
     - [ ] use lambda 
     - [x] use BFS 
-    - [ ] double pointer 
+    - [x] double pointer 
+        - [x] yes? 3217
     - [ ] matrix determinant 
     - [ ] dfs no recursion
 
@@ -31,18 +32,29 @@
     -[x] LC 55 
     -[ ] LC 146 ? (LRU) 
     -[x] LC 45 
+    -[x] 322
+    -[ ] 295 median from sorted
 
 ## BFS
 lc1905_count_sub_islands.py (grid BFS)
+    - [x] as dfs
 
 lc207_course_schedule.py (graph/topo BFS)
 
 lc417_pacific_atlantic_water.py (multi-source grid BFS)
 
-lc407_trapping_rain_water_ii.py (priority BFS)
+[x] lc407_trapping_rain_water_ii.py (priority BFS / "Best first search")
 
-lc322_coin_change.py (state BFS)
+[x] lc322_coin_change.py (state BFS)
+    - [x] as dfs
 
 lc97_interleaving_string.py (BFS on string indices)
 
 lc139_word_break.py (BFS variant)
+
+[x] lc365 - Water and jug (state space bfs - fun)
+    - [ ] as dfs
+
+## Heap
+[x] lc373 k smallest pairs
+
