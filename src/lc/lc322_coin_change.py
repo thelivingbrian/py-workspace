@@ -37,6 +37,17 @@ class Solution:
                     queue.append([new_total, coin_count+1])
         return -1
 
+# Pure DP
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        bt=[amount+1]*(amount+1)
+        bt[0]=0
+        for i in range(1,amount+1):
+            for f in coins:
+                if i-f>=0:
+                    bt[i]=min(bt[i],1+bt[i-f])
+        return bt[amount]if bt[amount]!= amount+1 else -1
+
 ###
 # Attempt reference -
 
