@@ -7,6 +7,7 @@
     - [ ] dfs no recursion
 
 ## Notable Problems
+- LC322 Coin change - Several different interesting solutions
 
 ## Links / Resources 
     - https://www.geeksforgeeks.org/dsa/facebookmeta-sde-sheet-interview-questions-and-answers/
@@ -32,8 +33,8 @@
     -[x] LC 55 
     -[ ] LC 146 ? (LRU) 
     -[x] LC 45 
-    -[x] 322
-    -[ ] 295 median from sorted
+    -[x] 322 coin change
+    -[x] 295 median from stream
 
 ## BFS
 lc1905_count_sub_islands.py (grid BFS)
@@ -44,6 +45,7 @@ lc207_course_schedule.py (graph/topo BFS)
 lc417_pacific_atlantic_water.py (multi-source grid BFS)
 
 [x] lc407_trapping_rain_water_ii.py (priority BFS / "Best first search")
+    - [ ] as dfs?
 
 [x] lc322_coin_change.py (state BFS)
     - [x] as dfs
@@ -56,5 +58,10 @@ lc139_word_break.py (BFS variant)
     - [ ] as dfs
 
 ## Heap
+[x] lc347 k most frequest elements
 [x] lc373 k smallest pairs
+[x] lc295 median from stream
+[x] lc506 ranks 
 
+## Tree
+[x] lc124 max path sum
