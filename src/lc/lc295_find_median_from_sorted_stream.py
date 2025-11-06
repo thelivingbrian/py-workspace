@@ -1,7 +1,44 @@
 # Leetcode 295. Find Median from Data Stream
 # https://leetcode.com/problems/find-median-from-data-stream/
 
-# original solution - TLE
+# Two heap solution
+class MedianFinder:
+    def __init__(self):
+        self.low = []  # 5, 4, 3, 2
+        self.high = [] # 7, 8, 10 
+
+    def addNum(self, num: int) -> None:
+        if len(self.low) + len(self.high) == 0:
+            heapq.heappush(self.low, -num)
+        elif len(self.low) == len(self.high):
+            if num <= -self.low[0]:
+                heapq.heappush(self.low, -num)
+            else:
+                heapq.heappush(self.high, num)
+        elif len(self.low) > len(self.high):
+            if num <= -self.low[0]:
+                heapq.heappush(self.low, -num)
+                heapq.heappush(self.high, -heapq.heappop(self.low))
+            else:
+                heapq.heappush(self.high, num)
+        else: # High has more elements
+            if num <= -self.low[0]:
+                heapq.heappush(self.low, -num)
+            else:
+                heapq.heappush(self.high, num)
+                heapq.heappush(self.low, -heapq.heappop(self.high))
+
+    def findMedian(self) -> float:
+        if len(self.low) + len(self.high) == 0:
+            return 0
+        elif len(self.low) == len(self.high):
+            return float(-self.low[0]+self.high[0]) / 2
+        elif len(self.low) > len(self.high):
+            return float(-self.low[0])
+        else: # High has more elements
+            return float(self.high[0])
+
+# original attempt - TLE
 class MedianFinder:
     def __init__(self):
         self.h = []
