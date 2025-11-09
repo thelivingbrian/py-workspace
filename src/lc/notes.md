@@ -12,7 +12,8 @@
 ## Links / Resources 
     - https://www.geeksforgeeks.org/dsa/facebookmeta-sde-sheet-interview-questions-and-answers/
     - https://www.typingtest.com/
-
+    - https://neetcode.io/practice?tab=neetcode150&subpage=practice
+    
 ## Topic by Week
     - 10/14 - 10/20 : Dynamic Programming
     - 10/21 - 10/27 : Breadth first Search
