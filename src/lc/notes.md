@@ -68,3 +68,7 @@ lc139_word_break.py (BFS variant)
 
 ## Tree
 [x] lc124 max path sum
+
+## Stack
+[x] lc3542 Min ops to convert to zero 
+[ ] lc42 trapping rainwater - As stack 
