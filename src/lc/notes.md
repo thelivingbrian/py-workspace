@@ -1,6 +1,7 @@
 ## Coding Challenges for LC
     - [ ] use lambda 
     - [x] use BFS 
+      - [ ] more BFS 
     - [x] double pointer 
         - [x] yes? 3217
     - [ ] matrix determinant 
@@ -19,13 +20,14 @@
     - 10/21 - 10/27 : Breadth first Search
     - 10/28 - 11/3  : Heap (priority queue)
     - 11/4  - 11/10 : Tree
-    - 11/11 - 11/17 : Greedy - Array? 
+    - 11/11 - 11/17 : Greedy
     - 11/18 - 11/24 : Graph
     - 11/25 - 12/1  : Stack
-    - 12/2  -       : Bit Manipulation
-    - 12/9  -       : Back Tracking 
-    - 12/16 -       : Recursion 
-    - 12/23 -       : Hash table
+    - 12/2  - 12/8  : Bit Manipulation
+    - 12/9  - 12/15 : Back Tracking 
+    - 12/16 - 12/22 : Recursion 
+    - 12/23 - 12/29 : Hash table
+    - 12/30 - 1/5   : Array
     - System Design + Review 
 
 ## Review Problem of the Day 
