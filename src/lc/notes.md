@@ -69,6 +69,15 @@ lc139_word_break.py (BFS variant)
 ## Tree
 [x] lc124 max path sum
 
+## Greedy
+[x] max subarray Neetcode150 - feels like sliding but not exactly
+    [ ] lc 53 - leetcode version 
+
+## Graph 
+[x] lc133 clone graph
+    [x] DFS
+    [x] BFS
+
 ## Stack
 [x] lc3542 Min ops to convert to zero 
 [ ] lc42 trapping rainwater - As stack 
