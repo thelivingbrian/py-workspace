@@ -39,6 +39,9 @@
     -[x] 322 coin change
     -[x] 295 median from stream
 
+## Unsolved 
+    -[ ] https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
+
 ## BFS
 lc1905_count_sub_islands.py (grid BFS)
     - [x] as dfs
